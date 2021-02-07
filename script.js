@@ -17,67 +17,164 @@ const btnAdd = document.querySelector("#btn-add");
 const btnSub = document.querySelector("#btn-sub");
 const btnDivide = document.querySelector("#btn-divide");
 const btnMulti = document.querySelector("#btn-multi");
+const display = document.querySelector("output");
+
+const values = {
+    num1: 0,
+    num2: 0,
+    operator: "",
+    result: 0,
+};
 
 //All the individual number button eventlisteners
 
 btnOne.addEventListener('click', () => {
-    console.log(1);
+    display.innerHTML += 1;
 });
 btnTwo.addEventListener('click', () => {
-    console.log(2);
+    display.innerHTML += 2;
 });
 btnThree.addEventListener('click', () => {
-    console.log(3);
+    display.innerHTML += 3;
 });
 btnFour.addEventListener('click', () => {
-    console.log(4);
+    display.innerHTML += 4;
 });
 btnFive.addEventListener('click', () => {
-    console.log(5);
+    display.innerHTML += 5;
 });
 btnSix.addEventListener('click', () => {
-    console.log(6);
+    display.innerHTML += 6;
 });
 btnSeven.addEventListener('click', () => {
-    console.log(7);
+    display.innerHTML += 7;
 });
 btnEight.addEventListener('click', () => {
-    console.log(8);
+    display.innerHTML += 8;
 });
 btnNine.addEventListener('click', () => {
-    console.log(9);
+    display.innerHTML += 9;
 });
 btnZero.addEventListener('click', () => {
-    console.log(0);
+    display.innerHTML += 0;
 });
 
 //Misc buttons
 
 btnClear.addEventListener('click', () => {
-    console.clear();
+    display.innerHTML = '';
+    values.num1 = 0;
+    values.num2 = 0;
+    values.operator = '';
+    values.result = 0;
+    console.log("Clear");
+    console.log(values);
 });
+
 btnDot.addEventListener('click', () => {
-    console.log(".");
+    if (!display.innerHTML.includes(".")) {
+        display.innerHTML += ".";   
+    } else {
+        return;
+    }
 });
 
 // "Operate" button
 
 btnEqual.addEventListener('click', () => {
-    console.log("=");
+    if (values.operator === "+") {
+        values.num2 = parseFloat(display.innerHTML);
+        values.result = values.num1 + values.num2;
+        display.innerHTML = values.result;
+        console.log("=");
+        console.log(values);
+    }
+    if (values.operator === "-") {
+        values.num2 = parseFloat(display.innerHTML);
+        values.result = values.num1 - values.num2;
+        display.innerHTML = values.result;
+        console.log("=");
+        console.log(values);
+    }
+    if (values.operator === "/") {
+        if (values.num2 === 0) {
+            display.innerHTML = "ERROR - Can't divide by 0"
+        } else {
+            values.num2 = parseFloat(display.innerHTML);
+            values.result = values.num1 / values.num2;
+            display.innerHTML = values.result;
+            console.log("=");
+            console.log(values);
+        }
+    }
+    if (values.operator === "*") {
+        values.num2 = parseFloat(display.innerHTML);
+        values.result = values.num1 * values.num2;
+        display.innerHTML = values.result;
+        console.log("=");
+        console.log(values);
+    }
 });
 
 //Operators
 
 btnAdd.addEventListener('click', () => {
+    if (values.num1 === 0) {
+        values.num1 = parseFloat(display.innerHTML);
+        values.operator = "+";
+        console.log("+");
+    } else {
+        values.num2 = parseFloat(display.innerHTML);
+        values.operator = "+";
+        console.log("+"); 
+    }
+    display.innerHTML = "";
     console.log("+");
+    console.log(values);
 });
+
 btnSub.addEventListener('click', () => {
+    if (values.num1 === 0) {
+        values.num1 = parseFloat(display.innerHTML);
+        values.operator = "-";
+        console.log("-");
+    } else {
+        values.num2 = parseFloat(display.innerHTML);
+        values.operator = "-";
+        console.log("-");
+    }
+    display.innerHTML = "";
+    console.log(values);
     console.log("-");
 });
+
 btnDivide.addEventListener('click', () => {
+    if (values.num1 === 0) {
+        values.num1 = parseFloat(display.innerHTML);
+        values.operator = "/";
+        console.log("/");
+    } else {
+        values.num2 = parseFloat(display.innerHTML);
+        values.operator = "/";
+        console.log("/");
+    }
+    display.innerHTML = "";
     console.log("/");
+    console.log(values);
 });
+
 btnMulti.addEventListener('click', () => {
+    if (values.num1 === 0) {
+        values.num1 = parseFloat(display.innerHTML);
+        values.operator = "*";
+        console.log("*");
+    } else {
+        values.num2 = parseFloat(display.innerHTML);
+        values.operator = "*";
+        console.log("*");
+    }
+    display.innerHTML = "";
     console.log("*");
+    console.log(values);
 });
 
